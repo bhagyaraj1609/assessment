@@ -1,14 +1,14 @@
 import java.util.Scanner;
 
-public class Calculator implements CalculatorInterface{
+public class Calculator implements CalculatorInterface {
 
     @Override
     public double add(String[] givenNumbers) {
 
         double result = 0;
-        for(String number : givenNumbers) {
+        for (String number : givenNumbers) {
 
-            result+=Double.parseDouble(number);
+            result += Double.parseDouble(number);
         }
         return result;
     }
@@ -17,8 +17,8 @@ public class Calculator implements CalculatorInterface{
     public double subtract(String[] givenNumbers) {
 
         double result = 0;
-        for(String number : givenNumbers) {
-            result-=Double.parseDouble(number);
+        for (String number : givenNumbers) {
+            result = Double.parseDouble(number)-result;
         }
         return result;
     }
@@ -26,17 +26,17 @@ public class Calculator implements CalculatorInterface{
     @Override
     public double multiply(String[] givenNumbers) {
         double result = 1;
-        for(String number : givenNumbers) {
-            result*=Double.parseDouble(number);
+        for (String number : givenNumbers) {
+            result *= Double.parseDouble(number);
         }
         return result;
     }
 
-    public static boolean isNumeric(String[] numbers){
+    public static boolean isNumeric(String[] numbers) {
 
 
         try {
-            for (String s: numbers) {
+            for (String s : numbers) {
                 double d = Double.parseDouble(s);
             }
         } catch (NumberFormatException nfe) {
@@ -50,26 +50,28 @@ public class Calculator implements CalculatorInterface{
         String givenNumber;
         String requiredOperation;
         Calculator calculator = new Calculator();
-        while (true) {
-            Scanner scanObject = new Scanner(System.in);
-            System.out.println("please enter required numbers separated by space");
-            givenNumber = scanObject.nextLine();
-            String[] numbers = givenNumber.split("\\s");
-            if (isNumeric(numbers)) {
-                System.out.println("what is the required Operation");
-                requiredOperation = scanObject.next();
-
-                switch (requiredOperation) {
-                    case "add" -> result = calculator.add(numbers);
-                    case "subtract" -> result = calculator.subtract(numbers);
-                    case "multiply" -> result = calculator.multiply(numbers);
+          while(true)
+          {
+              System.out.println("please enter required numbers separated by space");
+              Scanner scanObject = new Scanner(System.in);
+              givenNumber = scanObject.nextLine();
+              String[] numbers = givenNumber.split("\\s");
+              if (isNumeric(numbers))
+                 {
+                  System.out.println("what is the required Operation");
+                  requiredOperation = scanObject.next();
+                  switch (requiredOperation)
+                    {
+                      case "add" -> result = calculator.add(numbers);
+                      case "subtract" -> result = calculator.subtract(numbers);
+                      case "multiply" -> result = calculator.multiply(numbers);
+                     }
+                  System.out.println(result);
                 }
-                System.out.println(result);
-            } else {
-                System.out.println("enter a valid number");
-            }
-            scanObject.close();
+                else
+                    {
+                     System.out.println("enter a valid number");
+                    }
+          }
         }
     }
-
-}
