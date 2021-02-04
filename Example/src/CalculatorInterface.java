@@ -1,7 +1,7 @@
 public interface CalculatorInterface {
-    public int add(String[] givenNumbers);
+    public double add(String[] givenNumbers);
 
-    public int subtract(String[] givenNumbers);
+    public double subtract(String[] givenNumbers);
 
-    public int multiply(String[] givenNumbers);
+    public double multiply(String[] givenNumbers);
 }
